@@ -3,7 +3,7 @@ import { Link, Outlet } from "react-router-dom";
 function Navbar() {
   return (
     <>
-      <nav style={{ backgroundColor: "#f8f9fa", padding: "1rem" }}>
+      <nav style={{ backgroundColor: "#f8f9fa", padding: "1rem", justifyContent:"center" }}>
         <ul
           style={{
             display: "flex",
