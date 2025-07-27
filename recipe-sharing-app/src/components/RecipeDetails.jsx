@@ -3,6 +3,7 @@ import EditRecipeForm from "./EditRecipeForm";
 import {React, useState} from "react";
 import useRecipeStore from "./recipeStore";
 import { useParams } from "react-router-dom";
+import FavoriteButton from "./FavoriteButton";
 
 const RecipeDetails = () => {
   const {id} = useParams();
@@ -12,7 +13,7 @@ const RecipeDetails = () => {
     state.recipes.find((recipe) => recipe.id === recipeId)
   );
   if (!recipe) {
-    return null; // Don't render anything if the recipe is not found (e.g., after deletion)
+    return <p>Recipe not found</p>;
   }
 
   return (
@@ -23,8 +24,11 @@ const RecipeDetails = () => {
         <>
           <h1>{recipe.title}</h1>
           <p>{recipe.description}</p>
-          <button onClick={() => setIsEditing(true)}>Edit</button>
-          <DeleteRecipeButton recipeId={recipe.id} />
+          <div className="recipe-actions">
+            <button onClick={() => setIsEditing(true)}>Edit</button>
+            <FavoriteButton recipeId={recipe.id} />
+            <DeleteRecipeButton recipeId={recipe.id} />
+          </div>
         </>
       )}
     </div>

@@ -9,7 +9,7 @@ const DeleteRecipeButton = ({ recipeId }) => {
   const handleDelete = () => {
     if (window.confirm('Are you sure you want to delete this recipe?')) {
       deleteRecipe(recipeId);
-      navigate('/recipes')
+      navigate('/')
     }
   };
 
