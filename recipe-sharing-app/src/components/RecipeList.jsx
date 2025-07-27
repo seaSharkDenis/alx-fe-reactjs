@@ -1,10 +1,14 @@
+import { useEffect } from "react";
 import useRecipeStore from "./recipeStore";
-import { Link } from "react-router-dom";
+import { Link, StaticRouter } from "react-router-dom";
 
 function RecipeList() {
-  const recipes = useRecipeStore((state) => 
-    state.searchTerm ? state.filteredRecipes : state.recipes
-  );
+  const filteredRecipes = useRecipeStore(state=>state.filteredRecipes);
+  const recipes = useRecipeStore(state => state.recipes);
+
+  useEffect(()=>{
+    useRecipeStore.getState().filteredRecipes();
+  }, [recipes]);
 
   return (
     <div>
@@ -12,7 +16,7 @@ function RecipeList() {
       {recipes.length === 0 ? (
         <p>No recipes found.</p>
       ) : (
-        recipes.map((recipe) => (
+        filteredRecipes.map((recipe) => (
           <div key={recipe.id}>
             <h3>
               <Link to={`/recipes/${recipe.id}`}>{recipe.title}</Link>

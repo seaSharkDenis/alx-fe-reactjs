@@ -1,17 +1,18 @@
 import DeleteRecipeButton from "./DeleteRecipeButton";
 import EditRecipeForm from "./EditRecipeForm";
-import {React, useState} from "react";
+import { React, useState } from "react";
 import useRecipeStore from "./recipeStore";
-import { useParams } from "react-router-dom";
-import FavoriteButton from "./FavoriteButton";
+import { useParams, useNavigate } from "react-router-dom";
+// import FavoriteButton from "./FavoriteButton";
 
 const RecipeDetails = () => {
-  const {id} = useParams();
+  const { id } = useParams();
   const recipeId = Number(id);
   const [isEditing, setIsEditing] = useState(false);
-  const recipe = useRecipeStore((state) =>
+  const recipe = useRecipeStore(state =>
     state.recipes.find((recipe) => recipe.id === recipeId)
   );
+  const navigate = useNavigate();
   if (!recipe) {
     return <p>Recipe not found</p>;
   }
@@ -26,8 +27,11 @@ const RecipeDetails = () => {
           <p>{recipe.description}</p>
           <div className="recipe-actions">
             <button onClick={() => setIsEditing(true)}>Edit</button>
-            <FavoriteButton recipeId={recipe.id} />
-            <DeleteRecipeButton recipeId={recipe.id} />
+            {/* <FavoriteButton recipeId={recipe.id} /> */}
+            <DeleteRecipeButton
+              recipeId={recipe.id}
+              onDelete={() => navigate("/")}
+            />
           </div>
         </>
       )}

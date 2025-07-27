@@ -12,7 +12,11 @@ function EditRecipeForm({ recipe, onDone }) {
       alert("Title and description cannot be empty.");
       return;
     }
-    updateRecipe(recipe.id, { title, description });
+    updateRecipe({
+      ...recipe,
+      title,
+      description,
+    });
     onDone();
   };
 

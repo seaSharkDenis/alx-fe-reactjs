@@ -11,6 +11,6 @@ function SearchBar() {
       style={{ width: "100%", padding: "8px", marginBottom: "16px" }}
     />
   );
-};
+}
 
 export default SearchBar;

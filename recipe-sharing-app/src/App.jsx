@@ -3,8 +3,7 @@ import AddRecipeForm from "./components/AddRecipeForm";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import RecipeDetails from "./components/RecipeDetails";
 import SearchBar from "./components/SearchBar";
-import RecommendationsList from "./components/RecommendationsList";
-import FavoritesList from "./components/FavoritesList";
+import "./App.css";
 
 function App() {
   return (
@@ -23,8 +22,8 @@ function App() {
             <Route path="/" element={
               <div className="main-content">
                 <aside className="sidebar">
-                  <RecommendationsList />
-                  <FavoritesList />
+                  {/* <RecommendationsList />
+                  <FavoritesList /> */}
                 </aside>
                 <section className="content-main">
                   <RecipeList />
