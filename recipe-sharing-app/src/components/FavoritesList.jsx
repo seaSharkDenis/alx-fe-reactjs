@@ -5,11 +5,7 @@ function FavoritesList () {
   const favorites = useRecipeStore((state) => 
     state.favorites.map(id => 
       state.recipes.find(recipe => recipe.id === id)
-    ).filter(Boolean)); // Filter out undefined in case recipe was deleted
-
-  if (favorites.length === 0) {
-    return <p>You haven't favorited any recipes yet.</p>;
-  }
+    ));
 
   return (
     <div className="favorites-list">
