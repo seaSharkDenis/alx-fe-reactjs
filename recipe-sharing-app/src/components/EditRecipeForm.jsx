@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import useRecipeStore from './recipeStore';
+import React, { useState } from "react";
+import useRecipeStore from "./recipeStore";
 
-const EditRecipeForm = ({ recipe, onDone }) => {
+function EditRecipeForm({ recipe, onDone }) {
   const [title, setTitle] = useState(recipe.title);
   const [description, setDescription] = useState(recipe.description);
   const updateRecipe = useRecipeStore((state) => state.updateRecipe);
@@ -9,7 +9,7 @@ const EditRecipeForm = ({ recipe, onDone }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!title.trim() || !description.trim()) {
-      alert('Title and description cannot be empty.');
+      alert("Title and description cannot be empty.");
       return;
     }
     updateRecipe(recipe.id, { title, description });
@@ -41,7 +41,6 @@ const EditRecipeForm = ({ recipe, onDone }) => {
       </button>
     </form>
   );
-};
+}
 
 export default EditRecipeForm;
-
