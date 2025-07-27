@@ -6,8 +6,8 @@ function EditRecipeForm({ recipe, onDone }) {
   const [description, setDescription] = useState(recipe.description);
   const updateRecipe = useRecipeStore((state) => state.updateRecipe);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = (event) => {
+    event.preventDefault();
     if (!title.trim() || !description.trim()) {
       alert("Title and description cannot be empty.");
       return;
