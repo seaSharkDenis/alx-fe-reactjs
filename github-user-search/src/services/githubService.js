@@ -26,9 +26,23 @@ async function fetchUserData(username, location = "", minRepos = 0) {
                         }
                     }
                 );
+                
+                // Fetch additional repository data
+                const reposResponse = await axios.get(
+                    `https://api.github.com/users/${user.login}/repos?per_page=1&sort=updated`,
+                    {
+                        headers: {
+                            'Accept': 'application/vnd.github.v3+json'
+                        }
+                    }
+                );
+
                 return {
                     ...user,
-                    ...userDetails.data
+                    ...userDetails.data,
+                    html_url: userDetails.data.html_url, // GitHub profile URL
+                    last_updated_repo: reposResponse.data[0]?.name || 'None',
+                    last_updated: reposResponse.data[0]?.updated_at || 'Unknown'
                 };
             })
         );
@@ -41,7 +55,6 @@ async function fetchUserData(username, location = "", minRepos = 0) {
         if (error.response && error.response.status === 404) {
             throw new Error("User not found");
         } else if (error.response && error.response.status === 403) {
-            // GitHub API rate limit exceeded
             throw new Error("API rate limit exceeded. Please try again later.");
         } else {
             throw new Error("Something went wrong");
