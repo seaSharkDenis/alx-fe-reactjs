@@ -1,33 +1,51 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from 'react';
+import './App.css';
+import Search from './components/Search';
+import fetchUserData from './services/githubService';
+import Loading from './components/Loading';
+import UserNotFound from './components/UserNotFound';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [userData, setUserData] = useState(null);
+  const [searching, setSearching] = useState(false);
+  const [notFound, setNotFound] = useState(false);
+  const [searchedUsername, setSearchedUsername] = useState('');
+
+  const handleSearch = async(username) => {
+    setSearching(true);
+    setNotFound(false);
+    setUserData(null);
+    setSearchedUsername(username);
+    try{
+      const data = await fetchUserData(username);
+      setUserData(data);
+
+    }catch(err){
+      console.error("Gihub API error:", err);
+      setNotFound(true);
+    }finally{
+      setSearching(false);
+    }
+  };
 
   return (
     <>
+    < Search onSearch={handleSearch}/>
+    {searching && <Loading/>}
+    {notFound && <UserNotFound username={searchedUsername}/>}
+    {userData && (
       <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+        <h2>User Data</h2>
+        <p>Name: {userData.name}</p>
+        <p>Username: {userData.login}</p>
+        <p>Followers: {userData.followers}</p>
+        <p>Following: {userData.following}</p>
+        <p>User Image: <br /> 
+           <img src={userData.avatar_url} alt={`${userData.login}'s avatar`} />
+           </p>
+        <p>Public Repos: {userData.public_repos}</p>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+    )}
     </>
   )
 }
