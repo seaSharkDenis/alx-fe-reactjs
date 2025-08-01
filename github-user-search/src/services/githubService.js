@@ -1,10 +1,10 @@
 import axios from "axios";
 
-async function fetchUserData(username, location = "", minimumRepositories = 0) {
+async function fetchUserData(username, location = "", minRepos = 0) {
     try {
         let query = `${username} in:login`;
         if (location) query += ` location:${location}`;
-        if (minimumRepositories > 0) query += ` repos:>${minimumRepositories}`;
+        if (minRepos > 0) query += ` repos:>${minRepos}`;
 
         const response = await axios.get(
             `https://api.github.com/search/users?q=${encodeURIComponent(query)}&per_page=10`,
