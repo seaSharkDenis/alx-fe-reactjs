@@ -1,4 +1,3 @@
-// src/components/AddRecipeForm.js
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -18,7 +17,7 @@ const AddRecipeForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (e) => {
-    const { name, value } = e.currentTarget;
+    const { name, value } = e.target; // Changed from e.currentTarget to e.target
     setFormData({
       ...formData,
       [name]: value
@@ -42,7 +41,6 @@ const AddRecipeForm = () => {
     if (!formData.ingredients.trim()) newErrors.ingredients = 'Ingredients are required';
     if (!formData.steps.trim()) newErrors.steps = 'Steps are required';
     
-    // Additional validation for ingredients format
     if (formData.ingredients.trim() && formData.ingredients.split('\n').filter(i => i.trim()).length < 2) {
       newErrors.ingredients = 'Please enter at least 2 ingredients';
     }
@@ -59,21 +57,16 @@ const AddRecipeForm = () => {
     setIsSubmitting(true);
     
     try {
-      // In a real app, you would send this to your backend API
       const newRecipe = {
         ...formData,
-        id: Date.now(), // Temporary ID
+        id: Date.now(),
         ingredients: formData.ingredients.split('\n').filter(i => i.trim()),
         steps: formData.steps.split('\n').filter(i => i.trim()),
         tags: []
       };
       
       console.log('Submitting recipe:', newRecipe);
-      
-      // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      // Redirect to home page after submission
       navigate('/');
     } catch (error) {
       console.error('Error submitting recipe:', error);
