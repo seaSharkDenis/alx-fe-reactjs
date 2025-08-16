@@ -114,11 +114,11 @@ function RecipeDetail() {
           </ul>
         </div>
 
-        {/* Instructions */}
+        {/* Steps */}
         <div className="md:col-span-2">
-          <h2 className="text-2xl">Instructions</h2>
+          <h2 className="text-2xl">Steps</h2>
           <ol className="space-y-4">
-            {recipe.instructions.map((step, index) => (
+            {recipe.steps.map((step, index) => (
               <li
                 key={index}
                 className="pb-4 border-b border-gray-100 last:border-0"

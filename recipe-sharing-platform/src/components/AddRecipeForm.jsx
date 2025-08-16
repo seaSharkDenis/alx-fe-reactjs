@@ -10,7 +10,7 @@ const AddRecipeForm = () => {
     prepTime: '',
     cookTime: '',
     ingredients: '',
-    instructions: '',
+    steps: '',
     image: ''
   });
 
@@ -18,7 +18,7 @@ const AddRecipeForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value } = e.currentTarget;
     setFormData({
       ...formData,
       [name]: value
@@ -40,7 +40,7 @@ const AddRecipeForm = () => {
     if (!formData.prepTime.trim()) newErrors.prepTime = 'Prep time is required';
     if (!formData.cookTime.trim()) newErrors.cookTime = 'Cook time is required';
     if (!formData.ingredients.trim()) newErrors.ingredients = 'Ingredients are required';
-    if (!formData.instructions.trim()) newErrors.instructions = 'Instructions are required';
+    if (!formData.steps.trim()) newErrors.steps = 'Steps are required';
     
     // Additional validation for ingredients format
     if (formData.ingredients.trim() && formData.ingredients.split('\n').filter(i => i.trim()).length < 2) {
@@ -64,7 +64,7 @@ const AddRecipeForm = () => {
         ...formData,
         id: Date.now(), // Temporary ID
         ingredients: formData.ingredients.split('\n').filter(i => i.trim()),
-        instructions: formData.instructions.split('\n').filter(i => i.trim()),
+        steps: formData.steps.split('\n').filter(i => i.trim()),
         tags: []
       };
       
@@ -184,21 +184,21 @@ const AddRecipeForm = () => {
 
         {/* Instructions */}
         <div>
-          <label htmlFor="instructions" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="steps" className="block text-sm font-medium text-gray-700 mb-1">
             Instructions * (one step per line)
           </label>
           <textarea
-            id="instructions"
-            name="instructions"
+            id="steps"
+            name="steps"
             rows="7"
-            value={formData.instructions}
+            value={formData.steps}
             onChange={handleChange}
             className={`w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 ${
-              errors.instructions ? 'border-red-500' : 'border-gray-300'
+              errors.steps ? 'border-red-500' : 'border-gray-300'
             }`}
             placeholder={`Bring a large pot of salted water to boil...\nWhile pasta cooks, fry pancetta...\n...`}
           />
-          {errors.instructions && <p className="mt-1 text-sm text-red-600">{errors.instructions}</p>}
+          {errors.steps && <p className="mt-1 text-sm text-red-600">{errors.steps}</p>}
         </div>
 
         {/* Image URL */}
