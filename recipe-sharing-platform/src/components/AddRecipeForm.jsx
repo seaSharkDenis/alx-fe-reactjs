@@ -17,17 +17,17 @@ const AddRecipeForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (e) => {
-    const { name, value } = e.target; // Changed from e.currentTarget to e.target
-    setFormData({
-      ...formData,
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
       [name]: value
-    });
-    // Clear error when user types
+    }));
+    
     if (errors[name]) {
-      setErrors({
-        ...errors,
+      setErrors(prev => ({
+        ...prev,
         [name]: null
-      });
+      }));
     }
   };
 
