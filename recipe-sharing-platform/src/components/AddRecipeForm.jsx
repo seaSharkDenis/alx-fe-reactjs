@@ -3,45 +3,28 @@ import { useNavigate } from 'react-router-dom';
 
 const AddRecipeForm = () => {
   const navigate = useNavigate();
-  const [formData, setFormData] = useState({
-    title: '',
-    description: '',
-    prepTime: '',
-    cookTime: '',
-    ingredients: '',
-    steps: '',
-    image: ''
-  });
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
+  const [prepTime, setPrepTime] = useState('');
+  const [cookTime, setCookTime] = useState('');
+  const [ingredients, setIngredients] = useState('');
+  const [steps, setSteps] = useState('');
+  const [image, setImage] = useState('');
 
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
-    
-    if (errors[name]) {
-      setErrors(prev => ({
-        ...prev,
-        [name]: null
-      }));
-    }
-  };
-
   const validateForm = () => {
     const newErrors = {};
     
-    if (!formData.title.trim()) newErrors.title = 'Recipe title is required';
-    if (!formData.description.trim()) newErrors.description = 'Description is required';
-    if (!formData.prepTime.trim()) newErrors.prepTime = 'Prep time is required';
-    if (!formData.cookTime.trim()) newErrors.cookTime = 'Cook time is required';
-    if (!formData.ingredients.trim()) newErrors.ingredients = 'Ingredients are required';
-    if (!formData.steps.trim()) newErrors.steps = 'Steps are required';
+    if (!title.trim()) newErrors.title = 'Recipe title is required';
+    if (!description.trim()) newErrors.description = 'Description is required';
+    if (!prepTime.trim()) newErrors.prepTime = 'Prep time is required';
+    if (!cookTime.trim()) newErrors.cookTime = 'Cook time is required';
+    if (!ingredients.trim()) newErrors.ingredients = 'Ingredients are required';
+    if (!steps.trim()) newErrors.steps = 'Steps are required';
     
-    if (formData.ingredients.trim() && formData.ingredients.split('\n').filter(i => i.trim()).length < 2) {
+    if (ingredients.trim() && ingredients.split('\n').filter(i => i.trim()).length < 2) {
       newErrors.ingredients = 'Please enter at least 2 ingredients';
     }
 
@@ -58,10 +41,14 @@ const AddRecipeForm = () => {
     
     try {
       const newRecipe = {
-        ...formData,
+        title,
+        description,
+        prepTime,
+        cookTime,
+        ingredients: ingredients.split('\n').filter(i => i.trim()),
+        steps: steps.split('\n').filter(i => i.trim()),
+        image,
         id: Date.now(),
-        ingredients: formData.ingredients.split('\n').filter(i => i.trim()),
-        steps: formData.steps.split('\n').filter(i => i.trim()),
         tags: []
       };
       
@@ -88,9 +75,8 @@ const AddRecipeForm = () => {
           <input
             type="text"
             id="title"
-            name="title"
-            value={formData.title}
-            onChange={handleChange}
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
             className={`w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 ${
               errors.title ? 'border-red-500' : 'border-gray-300'
             }`}
@@ -106,10 +92,9 @@ const AddRecipeForm = () => {
           </label>
           <textarea
             id="description"
-            name="description"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
             rows="3"
-            value={formData.description}
-            onChange={handleChange}
             className={`w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 ${
               errors.description ? 'border-red-500' : 'border-gray-300'
             }`}
@@ -127,9 +112,8 @@ const AddRecipeForm = () => {
             <input
               type="text"
               id="prepTime"
-              name="prepTime"
-              value={formData.prepTime}
-              onChange={handleChange}
+              value={prepTime}
+              onChange={(e) => setPrepTime(e.target.value)}
               className={`w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 ${
                 errors.prepTime ? 'border-red-500' : 'border-gray-300'
               }`}
@@ -144,9 +128,8 @@ const AddRecipeForm = () => {
             <input
               type="text"
               id="cookTime"
-              name="cookTime"
-              value={formData.cookTime}
-              onChange={handleChange}
+              value={cookTime}
+              onChange={(e) => setCookTime(e.target.value)}
               className={`w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 ${
                 errors.cookTime ? 'border-red-500' : 'border-gray-300'
               }`}
@@ -163,10 +146,9 @@ const AddRecipeForm = () => {
           </label>
           <textarea
             id="ingredients"
-            name="ingredients"
+            value={ingredients}
+            onChange={(e) => setIngredients(e.target.value)}
             rows="5"
-            value={formData.ingredients}
-            onChange={handleChange}
             className={`w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 ${
               errors.ingredients ? 'border-red-500' : 'border-gray-300'
             }`}
@@ -182,10 +164,9 @@ const AddRecipeForm = () => {
           </label>
           <textarea
             id="steps"
-            name="steps"
+            value={steps}
+            onChange={(e) => setSteps(e.target.value)}
             rows="7"
-            value={formData.steps}
-            onChange={handleChange}
             className={`w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 ${
               errors.steps ? 'border-red-500' : 'border-gray-300'
             }`}
@@ -202,9 +183,8 @@ const AddRecipeForm = () => {
           <input
             type="text"
             id="image"
-            name="image"
-            value={formData.image}
-            onChange={handleChange}
+            value={image}
+            onChange={(e) => setImage(e.target.value)}
             className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
             placeholder="https://example.com/recipe-image.jpg"
           />
