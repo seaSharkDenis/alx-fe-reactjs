@@ -3,12 +3,51 @@
     "id": 1,
     "title": "Spaghetti Carbonara",
     "summary": "A classic Italian pasta dish with eggs, cheese, bacon, and black pepper.",
-    "image": "https://via.placeholder.com/150"
+    "image": "https://plus.unsplash.com/premium_photo-1691948106030-d5e76d461b14?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8c3BhZ2hldHRpJTIwY2FyYm9uYXJhfGVufDB8fDB8fHww",
+    "detail": "This are the steps for the recipe and other details.",
+    "ingredients": [
+      "400g spaghetti",
+      "200g pancetta or guanciale, diced",
+      "4 large eggs",
+      "50g pecorino cheese, grated",
+      "50g parmesan, grated",
+      "Freshly ground black pepper",
+      "Salt"
+    ],
+    "instructions": [
+      "Bring a large pot of salted water to boil and cook spaghetti according to package instructions.",
+      "While pasta cooks, fry pancetta in a large pan until crispy.",
+      "In a bowl, whisk eggs and mix in grated cheeses and plenty of black pepper.",
+      "Drain pasta, reserving a cup of pasta water.",
+      "Working quickly, add hot pasta to the pancetta, then remove from heat and add the egg mixture, stirring constantly.",
+      "Add pasta water as needed to create a creamy sauce.",
+      "Serve immediately with extra grated cheese and pepper."
+    ]
   },
   {
     "id": 2,
     "title": "Chicken Tikka Masala",
     "summary": "Chunks of grilled chicken (tikka) cooked in a smooth buttery & creamy tomato based gravy.",
-    "image": "https://via.placeholder.com/150"
+    "image": "https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Y2hpY2tlbiUyMHRpa2thJTIwbWFzYWxhfGVufDB8fDB8fHww",
+    "ingredients": [
+      "3 boneless, skinless chicken breasts",
+      "½ cup plain yogurt(125 g)",
+      "2 tablespoons lemon juice",
+      "6 cloves garlic, minced",
+      "1 tablespoon minced ginger",
+      "2 teaspoons salt",
+      "2 teaspoons ground cumin",
+      "2 teaspoons garam masala",
+      "2 teaspoons paprika"
+    ],
+    "instructions": [
+      "Slice the chicken into bite-sized chunks. Combine the cubed chicken with the yogurt, lemon juice, garlic, ginger, salt, cumin, garam masala, and paprika and stir until well-coated.",
+      "Cover and refrigerate for at least 1 hour, or overnight.",
+      "Preheat the oven to 500°F (260°C). Line a high-sided baking pan or roasting tray with parchment paper.",
+      "Place the marinated chicken pieces on bamboo or wooden skewers, then set them over the prepared baking pan, making sure there is space underneath the chicken to help distribute the heat more evenly. Bake for about 15 minutes, until slightly dark brown on the edges.",
+      "Make the sauce: Heat the oil in a large pot over medium heat, then sauté the onions, ginger, and garlic until tender but not browned. Add the cumin, turmeric, coriander, paprika, chili powder, and garam masala and stir constantly for about 30 seconds, until the spices are fragrant. Stir in the tomato puree, tomato sauce, and 1 ¼ cups of water, then bring to a boil and cook for about 5 minutes. Pour in the cream.",
+      "Remove the chicken from the skewers and add to the sauce, cooking for another 1-2 minutes. Garnish with cilantro and serve over rice or alongside naan bread.",
+      "Enjoy!"
+    ]
   }
 ]
